@@ -1,13 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DJANGO</title>
+    <link rel="stylesheet" href="{% static 'css/c1.css' %}">
+
 </head>
 <body>
     <center>
     <h1 style="background-color: aqua; color: blue;">Hello This is From Html Page</h1>
+    <img src="{% static 'images/img.jpeg' %}" alt=" not found" width="200">
 </center>
 </body>
 </html>
