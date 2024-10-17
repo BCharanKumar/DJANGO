@@ -1,0 +1,18 @@
+h1
+{
+    color: blue;
+    background-color: aqua;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+    text-decoration: underline;
+    border: 5PX dotted fuchsia;
+
+    
+}
+img
+{
+width: 300px;
+height: 300px;
+border-radius: 20px;
+transform: rotate(40deg);
+}

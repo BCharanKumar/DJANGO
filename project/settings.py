@@ -11,11 +11,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+#STATIC_DIR=os.path.join(BASE_DIR,'static')
 
+STATIC_DIR_PROJECT=os.path.join(os.path.join(BASE_DIR,'project'),'static')
+STATIC_DIR_APP=os.path.join(os.path.join(BASE_DIR,'app'),'static')
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -55,7 +60,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +127,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#STATICFILES_DIRS=[STATIC_DIR,]
+STATICFILES_DIRS=[STATIC_DIR_PROJECT,STATIC_DIR_APP,]
