@@ -21,4 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('example/',example,name='example'),
     path('first/',first,name='first'),
+    path('insert_topic/',insert_topic,name='insert_topic'),
+    path('insert_webpage/',insert_webpage,name='insert_webpage'),
+    path('insert_accessrecord/',insert_accessrecord,name='insert_accessrecord'),
 ]
+

@@ -10,7 +10,7 @@ class WebPage(models.Model):
     topic_name=models.ForeignKey(Topic,on_delete=models.CASCADE)
     name=models.CharField(max_length=150)
     url=models.URLField()
-    email=models.EmailField()
+    email=models.EmailField(max_length=155,default='charanbkumar25@gmail.com')
     def __str__(self):
         return self.name
 class AccessRecord(models.Model):
