@@ -54,4 +54,11 @@ def insert_accessrecord(request):
          return HttpResponse('Object created successfully')
     else:
         return HttpResponse('is already we have bro!!!!')
-   
+
+def data_display(request):
+    topics=Topic.objects.all()
+    webpages=WebPage.objects.all()
+    access=AccessRecord.objects.all()
+
+    data={'topics':topics,'webpages':webpages,'access':access}
+    return render(request,'display_data.html',data)

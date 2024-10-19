@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/css2.css' %}">
+</head>
+<body>
+    <fieldset>
+        <center>
+        <h1>Topic Names</h1>
+        <table border="3px">
+            <tr>
+                <th>SNO</th>
+                <th>TOPIC_NAME</th>
+            </tr>
+            {% for to in topics %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ to.topic_name }}</td>
+            </tr>
+    
+            {% endfor %}
+        </table>
+        <h1>webpages Details</h1>
+        <table border="3px">
+            <tr>
+                <th>ID</th>
+                <th>TOPIC_NAME</th>
+                <th>NAME</th>
+                <th>URL</th>
+
+            </tr>
+
+        {% for w in webpages %}
+
+        <tr>
+            <td>{{w.id}}</td>
+            <td>{{ w.topic_name}}</td>
+            <td>{{ w.name }}</td>
+            <td>{{ w.url  }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        </center>
+  </fieldset>
+  <fieldset>
+    <center>
+        <h1>AccessRecord Details </h1>
+        <table>
+
+            <tr>
+                <th>
+                    ID
+                </th><th>NAME</th>
+                <th>AUTHOR</th>
+                <TH>DATE</TH>
+            </tr>
+            {% for a in access %}
+            <TR>
+                <td>{{a.id}}</td>
+                <TD>{{ a.name}}</TD>
+                <td>{{a.author}}</td>
+                <td>{{a.date}}</td>
+            </TR>
+            {% endfor %}
+        </table>
+    </center>
+    </fieldset>
+
+
+</body>
+</html>

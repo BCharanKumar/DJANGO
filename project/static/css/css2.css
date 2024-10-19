@@ -1,0 +1,24 @@
+fieldset
+{
+    border: 3px dotted black;
+    background-color:grey;
+}
+table
+{
+
+    border: 3px dotted fuchsia;
+    color: blue;
+    background-color: greenyellow;
+    width:"80%";
+}
+td
+{
+    text-align: center;
+    color:red;
+    border: 3px double navy;
+    background-color: aqua;
+}
+th{
+    color: blue;
+    background-color: blueviolet;
+}
