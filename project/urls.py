@@ -26,5 +26,6 @@ urlpatterns = [
     path('insert_accessrecord/',insert_accessrecord,name='insert_accessrecord'),
     path('data_display/',data_display,name='data_display'),
     path('data_retriev/',data_retriev,name='data_retriev'),
+    path('data_order/',data_order,name='data_order'),
 ]
 

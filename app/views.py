@@ -2,6 +2,7 @@ from django.shortcuts import render
 from app.models import *
 # Create your views here.
 from django.http import HttpResponse
+from django.db.models.functions import Length
 
 def example(request):
     #Here I am taking HttpRequest and I am returning HttpResponse
@@ -110,8 +111,42 @@ def data_retriev(request):
     webpages=webpages=WebPage.objects.filter(topic_name='CRICKET')
      
     #Using filter with | operator here Q is mondatory
-    webpages=webpages=WebPage.objects.filter(Q(topic_name='CRICKET') | Q(topic_name='BOXING'))#If u r not using Q error will accured
+    webpages=webpages=WebPage.objects.filter(Q(topic_name='CRICKET') | Q(topic_name='BOXING'))
+    #If u r not using Q error will accured
     access=AccessRecord.objects.filter(Q(author='ANUSHKA SHARMA') | Q(id=8))
     data={'topics':topics,'webpages':webpages,'access':access}
     
     return render(request,'display_data.html',data)
+
+
+
+def data_order(request):
+    topics=Topic.objects.all()
+    webpages=WebPage.objects.all()
+    access=AccessRecord.objects.all()
+
+    #Arranging the data in aascending order
+    topics=Topic.objects.all().order_by('topic_name')
+    webpages=WebPage.objects.all().order_by('name')
+    access=AccessRecord.objects.all().order_by('author')
+
+    #Arranging the data in discending order
+    topics=Topic.objects.all().order_by('-topic_name')
+    webpages=WebPage.objects.all().order_by('-url')
+    access=AccessRecord.objects.all().order_by('-author')
+
+    #Arranging the data in aascending order
+    topics=Topic.objects.all().order_by(Length('topic_name'))
+    webpages=WebPage.objects.all().order_by(Length('name'))
+    access=AccessRecord.objects.all().order_by(Length('author'))
+
+    #Arranging the data in discending order
+    topics=Topic.objects.all().order_by(Length('topic_name').desc())
+    webpages=WebPage.objects.all().order_by(Length('name').desc())
+    access=AccessRecord.objects.all().order_by(Length('author').desc())
+
+
+    
+    data={'topics':topics,'webpages':webpages,'access':access}
+    return render(request,'display_data.html',data)
+    

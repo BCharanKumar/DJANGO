@@ -1,7 +1,8 @@
 fieldset
 {
-    border: 3px dotted black;
+    border: 3px double blue;
     background-color:grey;
+    color: blue;
 }
 table
 {
