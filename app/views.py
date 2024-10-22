@@ -2,6 +2,7 @@ from django.shortcuts import render
 from app.models import *
 # Create your views here.
 from django.http import HttpResponse
+from django.db.models import Q
 from django.db.models.functions import Length
 
 def example(request):
@@ -99,7 +100,7 @@ def data_retriev(request):
     else:
         return HttpResponse('is already we have bro!!!!')
 '''
-    from django.db.models import Q
+    
     #If we want to retriev specific data we can use the filter method as well
     topics=Topic.objects.filter(topic_name='BOXING')
 
@@ -146,7 +147,32 @@ def data_order(request):
     access=AccessRecord.objects.all().order_by(Length('author').desc())
 
 
-    
+
     data={'topics':topics,'webpages':webpages,'access':access}
     return render(request,'display_data.html',data)
     
+def field_lookups(request):
+    try:
+
+        topics=Topic.objects.all()
+        webpages=WebPage.objects.all()
+        access=AccessRecord.objects.all()
+        #Using of the field lookups 
+        topics=Topic.objects.all().order_by(Length('topic_name')).filter(Q(topic_name__startswith='C') | Q(topic_name__endswith='l'))
+        webpages=WebPage.objects.all().order_by(Length('name').desc()).filter(name__contains='A',name__startswith='H',name__endswith='A')
+        access=AccessRecord.objects.all().order_by(Length('author').desc()).filter(Q(author__iregex=r'^a') | Q(author__iregex=r'u$') | Q(author__iregex=r'[i]'))
+        webpages=WebPage.objects.filter(id__gt=5,pk__lte=19)
+        access=AccessRecord.objects.filter(date__year__gte=2000,date__month__lte=6)
+        access=AccessRecord.objects.filter(date__week__range=(1,25))
+        access=AccessRecord.objects.filter(date__week__range=(25,50),date__week_day__range=(1,5))
+        access=AccessRecord.objects.filter(Q(date__day=19) | Q(date__month__range=(3,9)))
+        access=AccessRecord.objects.filter(pk__in=[1,10,2,7,3,9,4,5])
+        access=AccessRecord.objects.filter(date__hour__gt=6,date__minute__range=(10,40))
+        access=AccessRecord.objects.filter(Q(date__minute__in=[6,7,8,12,45,53,6,52]) | Q(date__second__in=[4,5,6,7,8,45,6,52]))
+        access=AccessRecord.objects.filter(date__week_day__range=(5,17))
+        
+    except Exception as e:
+        return HttpResponse(f"Error is: {e}")
+        
+    data={'topics':topics,'webpages':webpages,'access':access}
+    return render(request,'display_data.html',data)

@@ -27,5 +27,6 @@ urlpatterns = [
     path('data_display/',data_display,name='data_display'),
     path('data_retriev/',data_retriev,name='data_retriev'),
     path('data_order/',data_order,name='data_order'),
+    path('field_lookups/',field_lookups,name='field_lookups'),
 ]
 
