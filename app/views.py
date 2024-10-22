@@ -56,9 +56,62 @@ def insert_accessrecord(request):
         return HttpResponse('is already we have bro!!!!')
 
 def data_display(request):
+     #If we want to get all the data commonly we will use all
     topics=Topic.objects.all()
     webpages=WebPage.objects.all()
     access=AccessRecord.objects.all()
 
     data={'topics':topics,'webpages':webpages,'access':access}
+    return render(request,'display_data.html',data)
+
+def data_retriev(request):
+    #If we want to get all the data commonly we will use 'all method '
+    #topics=Topic.objects.all()
+    #webpages=WebPage.objects.all()
+    #access=AccessRecord.objects.all()
+    
+    #if we want to retriev the specific data we will go for 'get method '
+    #print(WebPage.objects.get(name='CHARAN',url='https://cherry.in'))
+
+    #but mostly or commomly when we r dealing with get we will use primary key column 
+    #print(WebPage.objects.get(id=14))
+
+    #If the get method condtion satisfies more than one row...
+    #print(WebPage.objects.get(topic_name='CRICKET'))
+    #Error is the answer becoz
+    #if the get method statisfies multi rows it will return an error bcoz get method is able to satisfiy only one row
+    
+    # when we r inserting data into child table we should get the object of parent then in that case we will use get method to get that object
+    '''
+    tn=input('enter ur topic_name:')
+    n=input('enter ur name:')
+    u=input('enter ur url;')
+    e=input('enter email..')
+    a=input('enter ur author:!')
+    d=input('enter the date!')
+
+    TO=Topic.objects.get(topic_name=tn)
+    WO=WebPage.objects.get(topic_name=TO,name=n,url=u)
+    AO=AccessRecord.objects.get_or_create(name=WO,author=a,date=d)
+    if AO[1]: 
+         return HttpResponse('Object created successfully')
+    else:
+        return HttpResponse('is already we have bro!!!!')
+'''
+    from django.db.models import Q
+    #If we want to retriev specific data we can use the filter method as well
+    topics=Topic.objects.filter(topic_name='BOXING')
+
+    #Using filter with & operator 
+    webpages=WebPage.objects.filter(id=3,name='CHARAN')#we no need to use any other objects
+    access=AccessRecord.objects.filter(author='CHERRY',id=8)#no rows satisfy no error no operation
+
+    #If the filter method satisfies more than one row also it will display the values
+    webpages=webpages=WebPage.objects.filter(topic_name='CRICKET')
+     
+    #Using filter with | operator here Q is mondatory
+    webpages=webpages=WebPage.objects.filter(Q(topic_name='CRICKET') | Q(topic_name='BOXING'))#If u r not using Q error will accured
+    access=AccessRecord.objects.filter(Q(author='ANUSHKA SHARMA') | Q(id=8))
+    data={'topics':topics,'webpages':webpages,'access':access}
+    
     return render(request,'display_data.html',data)
