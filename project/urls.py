@@ -28,5 +28,6 @@ urlpatterns = [
     path('data_retriev/',data_retriev,name='data_retriev'),
     path('data_order/',data_order,name='data_order'),
     path('field_lookups/',field_lookups,name='field_lookups'),
+    path('sel_rel_method/',sel_rel_method,name='sel_rel_method')
 ]
 

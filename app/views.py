@@ -176,3 +176,36 @@ def field_lookups(request):
         
     data={'topics':topics,'webpages':webpages,'access':access}
     return render(request,'display_data.html',data)
+
+
+def sel_rel_method(request):
+    topics=Topic.objects.all()
+    webpages=WebPage.objects.all()
+    access=AccessRecord.objects.all()
+
+    
+    LWO=WebPage.objects.select_related('topic_name').filter(topic_name='CRICKET')
+    LWO=WebPage.objects.select_related('topic_name').filter(name__startswith='C',email__contains='')
+    LWO=WebPage.objects.select_related('topic_name').filter(name__contains='R',id__gt=8)
+    LWO=WebPage.objects.select_related('topic_name').filter(url__contains='e',name__iregex=r'^C').order_by('-email')
+    LWO=WebPage.objects.select_related('topic_name').filter(Q(id=10) | Q(name__endswith='A')).order_by(Length('topic_name'))
+    LWO=WebPage.objects.select_related('topic_name').filter(name__iregex=r'^C',email__contains='A')
+    LWO=WebPage.objects.select_related('topic_name').filter(id__in=[1,3,7,9,8,4,13],name__endswith='A').order_by('name').order_by(Length('email'))
+    LWO=WebPage.objects.select_related('topic_name').all()
+
+    LAO=AccessRecord.objects.select_related('name').filter(date__year__lt=2000)
+    LAO=AccessRecord.objects.select_related('name').filter(date__month__range=(2,7),author__contains='K')
+    LAO=AccessRecord.objects.select_related('name').filter(author__contains='U').order_by('-id')
+    LAO=AccessRecord.objects.select_related('name').filter(Q(id__gt=3) | Q(date__week__range=(2,30))).order_by(Length('author').desc())
+    LAO=AccessRecord.objects.select_related('name').filter(name__email__contains='e')
+    LAO=AccessRecord.objects.select_related('name').filter(Q(id__gt=8) | Q(name__url__contains='e'))
+    LAO=AccessRecord.objects.select_related('name').filter(date__hour__range=(2,10),author__iregex=r'[A]')
+    LAO=AccessRecord.objects.select_related('name').filter(date__minute__in=[1,6,56,34,59,13,45,36,23])
+    LAO=AccessRecord.objects.select_related('name').filter(Q(id__lt=25) | Q(name__email__contains='e'),name__url__startswith='h').order_by('-name__email')
+    LAO=AccessRecord.objects.select_related('name').filter(Q(name__url__iregex=r'n$') , Q(author__endswith='A') | Q(name__email__startswith='k')).order_by(Length('author'))
+    LAO=AccessRecord.objects.select_related('name').filter(name__url__contains='l' , date__month__gte=6,date__year__lt=2015)
+    LAO=AccessRecord.objects.select_related('name').all()
+
+    data={'topics':topics,'webpages':webpages,'access':access,'LWO':LWO,'LAO':LAO}
+    return render(request,'joins.html',data)
+

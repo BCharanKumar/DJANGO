@@ -1,0 +1,73 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/c2.css' %}">
+</head>
+<body>
+    <fieldset>
+        <center>
+            <h1>Topic And Webpage</h1>
+            <table> 
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Url</th>
+                    <th>Email</th>
+                    <th>Topic Name</th>
+                    
+                </tr>
+
+                {% for wo in LWO %}
+
+                    <tr>
+                        <td>{{wo.pk}}</td>
+                       
+                        <td>{{wo.name}}</td>
+                        <td>{{wo.url}}</td>
+                        <td>{{wo.email}}</td>
+                        <td>{{wo.topic_name}}</td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </center>
+    </fieldset>
+    <fieldset>
+        <center>
+            <h1> Webpage And AccessRecord</h1>
+            <table> 
+                <tr>
+                    <th>ID</th>
+                    <th>AUTHOR</th>
+                    <th>DATE</th>
+                    <th>Name</th>
+                    <th>PK</th>
+                    <th>URL</th>
+                    <th>EMAIL</th>
+                        
+                </tr>
+
+                {% for ao in LAO %}
+
+                    <tr>
+                        <td>{{ao.pk}}</td>
+                        <td>{{ao.author}}</td>
+                        <td>{{ao.date}}</td>
+                        <td>{{ao.name}}</td>
+                        <td>{{ao.name.id}}</td>
+                        <td>{{ao.name.url}}</td>
+                        <td>{{ao.name.email}}</td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </center>
+    </fieldset>
+    
+</body>
+</html>

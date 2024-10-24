@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/css2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css1.css' %}">
 </head>
 <body>
     <fieldset>
@@ -56,7 +56,7 @@
   <fieldset>
     <center>
         <h1>AccessRecord Details </h1>
-        <table>
+        <table border="3px">
 
             <tr>
                 <th>
@@ -75,6 +75,34 @@
             {% endfor %}
         </table>
     </center>
+    </fieldset>
+    <fieldset>
+        <center>
+            <h1>DATA</h1>
+            <table> 
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Url</th>
+                    <th>Email</th>
+                    <th>Topic Name</th>
+                    
+                </tr>
+
+                {% for wo in LWO %}
+
+                    <tr>
+                        <td>{{wo.pk}}</td>
+                       
+                        <td>{{wo.name}}</td>
+                        <td>{{wo.url}}</td>
+                        <td>{{wo.email}}</td>
+                        <td>{{wo.topic_name}}</td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </center>
     </fieldset>
 
 

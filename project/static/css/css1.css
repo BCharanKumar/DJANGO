@@ -12,10 +12,37 @@ h1
 }
 img
 {
-width: 300px;
-height: 300px;
+
 border-radius: 20px;
 transform: rotate(57deg);
 background-color: blue;
 border:5px double blue ;
+}
+
+fieldset
+{
+    border: 3px double blue;
+    background-color:grey;
+    color: black;
+}
+table
+{
+
+    border: 3px dotted fuchsia;
+    color: blue;
+    background-color: greenyellow;
+    border-radius: 10px;
+}
+td
+{
+    text-align: center;
+    color:red;
+    border: 3px double navy;
+    background-color: aqua;
+    border-radius: 10px;
+}
+th{
+    color: blue;
+    background-color: blueviolet;
+    border-radius: 10px;
 }

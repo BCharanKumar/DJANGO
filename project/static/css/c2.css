@@ -2,7 +2,7 @@ fieldset
 {
     border: 3px double blue;
     background-color:grey;
-    color: blue;
+    color:blue;
 }
 table
 {
@@ -10,7 +10,7 @@ table
     border: 3px dotted fuchsia;
     color: blue;
     background-color: greenyellow;
-    width:"80%";
+    border-radius: 15px;
 }
 td
 {
@@ -18,8 +18,13 @@ td
     color:red;
     border: 3px double navy;
     background-color: aqua;
+    border-radius: 15px;
+    margin: auto;
+    padding: 3px;
 }
 th{
     color: blue;
     background-color: blueviolet;
+    border-radius: 15px;
+    padding: 4px;
 }
