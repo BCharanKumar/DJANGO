@@ -115,6 +115,11 @@ def data_retriev(request):
     #By using exclude data retrieving 
     access=AccessRecord.objects.exclude(author__contains='A')   
     webpages=webpages=WebPage.objects.exclude(name__startswith='A',email__contains='K',url__contains='l')
+    access=AccessRecord.objects.exclude(date__year__lt=1995,date__hour__lte=8)
+    '''Simply the functionality of exclude is similar to filter but it will gives the output
+      what r the rows conditions not satisfies given conditions(if condition satisfies that will not be there in output)'''
+
+ 
     
     
     data={'topics':topics,'webpages':webpages,'access':access}
