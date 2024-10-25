@@ -112,7 +112,11 @@ def data_retriev(request):
     #Using filter with | operator here Q is mondatory
     webpages=webpages=WebPage.objects.filter(Q(topic_name='CRICKET') | Q(topic_name='BOXING'))#If u r not using Q error will accured
     access=AccessRecord.objects.filter(Q(author='ANUSHKA SHARMA') | Q(id=8))
-    access=AccessRecord.objects.exclude(authuor__contains='A')
+    #By using exclude data retrieving 
+    access=AccessRecord.objects.exclude(author__contains='A')   
+    webpages=webpages=WebPage.objects.exclude(name__startswith='A',email__contains='K',url__contains='l')
+    
+    
     data={'topics':topics,'webpages':webpages,'access':access}
     
     return render(request,'display_data.html',data)
