@@ -20,3 +20,5 @@ class AccessRecord(models.Model):
 
     def __str__(self):
         return self.author
+
+

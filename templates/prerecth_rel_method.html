@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <STYle>
+       
+        h3
+        {
+
+            color:red;
+        }
+        h2
+        {
+            color: lawngreen;
+        }
+        h1
+        {
+            text-align: center;
+            background-color:aqua;
+            color: red;
+            
+
+        }
+        table
+        {
+            border: 3px double red;
+            text-align: center;
+            width: 100%;
+            
+            
+        }
+        tr,td,tbody
+        {
+            border: 3px dotted blue;
+            padding: 5px;
+            color: fuchsia;
+            
+            
+
+        }
+        th
+        {
+            border: 3px double yellowgreen;
+            padding: 10px;
+            color: navy;  
+            font-style: italic; 
+            font-size: x-large;
+        }
+       
+    </STYle>
+</head>
+<body>
+    <fieldset>
+       <table border="3PX">
+       <tr>
+        <th colspan="4"><h3>Topic Name</h3></th>
+    
+       </tr>
+        {% for to in LTWO %}
+        <tr>
+            <td colspan="4">
+           <h2>{{to.topic_name}}</h2>
+        </td>
+        </tr>
+        <tr><th>ID</th>
+        <TH>Name</TH>
+        <TH>URL</TH>
+        <TH>Email</TH>
+       
+        {% for wo in to.webpage_set.all %}
+            <tr>
+        <td>{{wo.id}}</td>
+        <td>{{wo.name}}</td>
+        <td>{{wo.url }}</td>
+        <td>{{wo.email}}</td>
+        
+    </tr>
+        {% endfor %}
+        {% endfor %}
+    </table>
+    </fieldset>
+</body>
+</html>

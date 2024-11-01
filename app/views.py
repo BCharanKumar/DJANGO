@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.db.models.functions import Length
 
+
 def example(request):
     #Here I am taking HttpRequest and I am returning HttpResponse
     return HttpResponse(' i am from views ')
@@ -115,6 +116,14 @@ def data_retriev(request):
     webpages=webpages=WebPage.objects.filter(Q(topic_name='CRICKET') | Q(topic_name='BOXING'))
     #If u r not using Q error will accured
     access=AccessRecord.objects.filter(Q(author='ANUSHKA SHARMA') | Q(id=8))
+    #By using exclude data retrieving 
+    access=AccessRecord.objects.exclude(author__contains='A')
+    webpages=webpages=WebPage.objects.exclude(name__startswith='R',email__contains='k')
+    topics=Topic.objects.exclude(topic_name='CRICKET') 
+    access=AccessRecord.objects.exclude(date__year__lt=1995,date__hour__lte=8)
+    '''Simply the functionality of exclude is similar to filter but it will gives the output
+      what r the rows conditions not satisfies given conditions(if condition satisfies that will not be there in output)'''
+
     data={'topics':topics,'webpages':webpages,'access':access}
     
     return render(request,'display_data.html',data)
@@ -209,3 +218,36 @@ def sel_rel_method(request):
     data={'topics':topics,'webpages':webpages,'access':access,'LWO':LWO,'LAO':LAO}
     return render(request,'joins.html',data)
 
+def prerecth_rel_method(request):
+    LTWO=Topic.objects.prefetch_related('webpage_set').all()
+    LTWO=Topic.objects.prefetch_related('webpage_set').filter(topic_name__contains='A')
+    #LTWO=Topic.objects.prefetch_related('webpage_set').filter(webpage_set__name='MESSI')
+    LTWO=Topic.objects.prefetch_related('webpage_set').exclude(topic_name='T BILLA',)
+    LTWO=Topic.objects.prefetch_related('webpage_set').exclude()
+    d={'LTWO':LTWO}
+
+    return render(request,'prerecth_rel_method.html',d)
+
+
+
+
+def dummy(request):
+    return render(request,'dummy.html')
+def home(request):
+    return render(request,'home.html')
+def alerts(request):
+    return render(request,'alerts.html')
+def buttons(request):
+    return render(request,'buttons.html')
+
+def badge(request):
+    return render(request,'badge.html')
+
+def forms(request):
+    return render(request,'forms.html')
+def dropdown(request):
+    return render(request,'dropdown.html')
+
+
+def buttongroup(request):
+     return render(request,'buttongroup.html')

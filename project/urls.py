@@ -28,6 +28,16 @@ urlpatterns = [
     path('data_retriev/',data_retriev,name='data_retriev'),
     path('data_order/',data_order,name='data_order'),
     path('field_lookups/',field_lookups,name='field_lookups'),
-    path('sel_rel_method/',sel_rel_method,name='sel_rel_method')
+    path('sel_rel_method/',sel_rel_method,name='sel_rel_method'),
+    path('prerecth_rel_method/',prerecth_rel_method,name='prerecth_rel_method'),
+    #path('aggregate_functions/',aggregate_functions,name='aggregate_functions'),
+    path('dummy/',dummy,name='dummy'),
+    path('home/',home,name='home'),
+    path('alerts/',alerts,name='alerts'),
+    path('buttons/',buttons,name='buttons'),
+    path('forms/',forms,name='forms'),
+    path('badge/',badge,name='badge'),
+    path('dropdown/',dropdown,name='dropdown'),
+    path('buttongroup/',buttongroup,name='buttongroup'),
 ]
 
